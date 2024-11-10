@@ -5,17 +5,14 @@ on:
     branches: [main]
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4         # Update from v2
+      - uses: actions/setup-node@v4       # Update from v2
         with:
-          node-version: '20'
+          node-version: '20'              # Explicitly use Node.js 20
+          cache: 'npm'                    # Optional: Enable npm caching
 
       - name: Install dependencies
         run: npm install
